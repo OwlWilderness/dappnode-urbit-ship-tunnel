@@ -1,0 +1,26 @@
+# Public certificate supplied only in a separate private build stage.
+/origin-ca.pem
+/build_*
+node_modules/
+.env
+.env.*
+*.pem
+*.crt
+*.cer
+*.key
+*.p12
+*.pfx
+certs/
+certificates/
+keys/
+secrets/
+credentials/
+artifacts/
+dist/
+coverage/
+*.tar
+*.tar.*
+*.tgz
+*.zip
+*.log
+.DS_Store

@@ -1,0 +1,15 @@
+version: "2"
+fields:
+  - id: tunnelToken
+    title: Cloudflare named tunnel token
+    description: >-
+      Owner only: enter the token in this private native Dappnode UI after
+      backend readiness. Never send it in chat, CLI arguments, screenshots,
+      logs or source. This masked field configures administrator-readable
+      Docker environment; it is not a portable secret vault.
+    target:
+      type: environment
+      name: TUNNEL_TOKEN
+      service: connector
+    secret: true
+    required: true

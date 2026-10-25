@@ -1,0 +1,27 @@
+{
+  "status": "source-only; upstream verification supplied by parent task; no build or runtime verification here",
+  "release": {
+    "repository": "cloudflare/cloudflared",
+    "version": "2026.10.3",
+    "publishedDate": "2026-10-21"
+  },
+  "image": {
+    "repository": "cloudflare/cloudflared",
+    "platform": "linux/amd64",
+    "manifestDigest": "sha256:c3f24df7c5e68c1467afc5486c155689f247eb02246b3a124fc5f42458728672",
+    "configDigest": "sha256:1475624a6d235381d8886c0e0a7ca8694d01ae535370047a09c89787380e9d6c",
+    "user": "65532:65532",
+    "entrypoint": [
+      "cloudflared",
+      "--no-autoupdate"
+    ],
+    "volumes": []
+  },
+  "validation": {
+    "sdk": "0.3.55",
+    "schemas": "0.1.26",
+    "dockerComposeSchemaRun": false,
+    "readOnlySupported": false
+  },
+  "originCa": "Absent from source; a separate authorized private build stage supplies only origin-ca.pem, a public certificate."
+}

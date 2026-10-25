@@ -1,0 +1,14 @@
+{
+  "name": "uvm-tunnel.public.dappnode.eth",
+  "version": "0.1.0",
+  "description": "Private-development Cloudflare connector source for a separately managed UVM ship. Blank token and absent public origin CA intentionally prevent activation/build. Schema checks do not establish installability or backend readiness.",
+  "type": "service",
+  "license": "GPL v3",
+  "architectures": ["linux/amd64"],
+  "mainService": "connector",
+  "upstreamRepo": "cloudflare/cloudflared",
+  "upstreamVersion": "2026.10.3",
+  "warnings": {
+    "onInstall": "Development source only. Configure only through the private native Dappnode UI after backend TLS and routing readiness. The token is administrator-readable Docker environment, not a portable secret vault. Never publish the route before backend readiness."
+  }
+}

@@ -1,0 +1,20 @@
+version: "3.5"
+services:
+  connector:
+    image: "connector.uvm-tunnel.public.dappnode.eth:0.1.0"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      TUNNEL_TOKEN: ""
+    command: ["tunnel", "--loglevel", "error", "run"]
+    restart: unless-stopped
+    stop_signal: SIGTERM
+    stop_grace_period: 60s
+    logging:
+      driver: none
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    # read_only is rejected by the pinned SDK Dappnode allowlist.
