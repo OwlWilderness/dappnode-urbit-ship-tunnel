@@ -11,6 +11,28 @@ const load = () => getPackagesToBuildProps({ rootDir, variantsDirPath: join(root
 // The SDK's validateComposeSchema invokes Docker; deliberately not imported.
 const digest = 'sha256:c3f24df7c5e68c1467afc5486c155689f247eb02246b3a124fc5f42458728672';
 
+test('descriptive metadata preserves the installed connector identity and token contract', () => {
+  const { manifest, compose } = load()[0];
+  assert.equal(manifest.name, 'uvm-tunnel.public.dappnode.eth');
+  assert.equal(manifest.shortDescription, 'Urbit Ship Tunnel');
+  assert.match(manifest.description, /^Urbit Ship Tunnel —/);
+  assert.equal(Object.hasOwn(manifest, 'displayName'), false);
+  assert.equal(manifest.mainService, 'connector');
+  assert.equal(compose.services.connector.image, 'connector.uvm-tunnel.public.dappnode.eth:0.1.0');
+  assert.deepEqual(compose.services.connector.environment, { TUNNEL_TOKEN: '' });
+});
+
+test('getting-started text explains the ship-only connector and its prerequisites', () => {
+  const { manifest } = load()[0];
+  const guide = manifest.gettingStarted;
+  assert.match(guide, /Urbit Ship Tunnel/);
+  assert.match(guide, /does not run or start a ship/);
+  assert.match(guide, /public CA certificate/);
+  assert.match(guide, /ship-only route/);
+  assert.match(guide, /#origin-route-contract/);
+  assert.doesNotMatch(guide, /private key|paste.*token/i);
+});
+
 test('standalone connector is read and validated by real SDK schemas without Docker', () => {
   assert.ok(existsSync(join(rootDir, 'dappnode_package.json')), 'connector source manifest must exist');
   const packages = load();
